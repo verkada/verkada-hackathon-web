@@ -1,0 +1,19 @@
+.form {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.queueList {
+    list-style: none;
+    padding-inline-start: 0;
+    margin-block: 0;
+}
+
+.queueList li {
+    padding: 5px;
+    border-bottom: 1px solid white;
+}
+
+.queueList li:first-of-type {
+    border-top: 1px solid white;
+}
