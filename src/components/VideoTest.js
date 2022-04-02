@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { HOST, USER_ID, USER_TOKEN } from "../constants";
+import { Cameras, HOST, USER_ID, USER_TOKEN } from "../constants";
 import Video from "./Video";
 
 import styles from "./VideoTest.module.css";
@@ -16,10 +16,12 @@ function VideoTest() {
   );
 
   const [videoMode, setVideoMode] = useState("live");
+
+  const [cameraId, setCameraId] = useState(Cameras[0].id);
   const src =
     videoMode === "historical"
-      ? `${HOST}/devices/1c2dee60-5fe2-4eca-b969-29b88a68eaae/history/video.m3u8?user=${USER_ID}&token=${USER_TOKEN}&start=${start}&end=${end}`
-      : `${HOST}/devices/1c2dee60-5fe2-4eca-b969-29b88a68eaae/liveVideo.m3u8?user=${USER_ID}&token=${USER_TOKEN}`;
+      ? `${HOST}/devices/${cameraId}/history/video.m3u8?user=${USER_ID}&token=${USER_TOKEN}&start=${start}&end=${end}`
+      : `${HOST}/devices/${cameraId}/liveVideo.m3u8?user=${USER_ID}&token=${USER_TOKEN}`;
 
   const onVideoElement = useCallback((ref) => {
     // Ref is the `video` element
@@ -29,6 +31,13 @@ function VideoTest() {
     <div>
       <h3>Example Video</h3>
       <div>
+        <select onChange={(e) => setCameraId(e.target.value)} value={cameraId}>
+          {Cameras.map((camera) => (
+            <option key={camera.id} value={camera.id}>
+              {camera.name}
+            </option>
+          ))}
+        </select>
         <select
           onChange={(e) => setVideoMode(e.target.value)}
           value={videoMode}
