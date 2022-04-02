@@ -12,15 +12,14 @@ const videoConfig = {
   queueEndpoint: `${HOST}/video/queue?user=${USER_ID}&token=${USER_TOKEN}`,
 };
 
-const testAudioID = "9DFA3571-6035-448A-955E-1BCD4EDC3B77";
 const audioConfig = {
   name: "audio",
-  accept: "audio/mpeg3",
-  uploadEndpoint: `${HOST}/audio/${testAudioID}/upload?user=${USER_ID}&token=${USER_TOKEN}`,
-  queueEndpoint: `${HOST}/audio/${testAudioID}/queue?user=${USER_ID}&token=${USER_TOKEN}&speaker_id=${testAudioID}`,
+  accept: "audio/wav",
+  uploadEndpoint: `${HOST}/audio/DEVICE_ID/upload?user=${USER_ID}&token=${USER_TOKEN}`,
+  queueEndpoint: `${HOST}/audio/DEVICE_ID/queue?user=${USER_ID}&token=${USER_TOKEN}`,
 };
 
-function UploadQueue({ type }) {
+function UploadQueue({ type, device }) {
   const { name, accept, uploadEndpoint, queueEndpoint } =
     type === "audio" ? audioConfig : videoConfig;
 
@@ -29,7 +28,7 @@ function UploadQueue({ type }) {
   const [queue, setQueue] = useState({ state: "loading" });
   const updateQueue = useCallback(async () => {
     try {
-      const resp = await fetch(queueEndpoint);
+      const resp = await fetch(queueEndpoint.replaceAll("DEVICE_ID", device));
       if (resp.ok) {
         const data = await resp.json();
         setQueue({
@@ -46,7 +45,7 @@ function UploadQueue({ type }) {
         state: "error",
       });
     }
-  }, [queueEndpoint]);
+  }, [queueEndpoint, device]);
 
   useEffect(() => {
     updateQueue();
@@ -66,7 +65,7 @@ function UploadQueue({ type }) {
     try {
       setFormState({ state: "submitting" });
 
-      const resp = await fetch(uploadEndpoint, {
+      const resp = await fetch(uploadEndpoint.replaceAll("DEVICE_ID", device), {
         method: "post",
         body: new FormData(event.target),
       });
@@ -123,7 +122,19 @@ function UploadQueue({ type }) {
           </label>
           <input name={name} ref={fileRef} type="file" accept={accept} />
         </div>
-        {formState.state === "error" ? formState.errorMessage : null} <br />
+        {formState.state === "error" ? (
+          <>
+            {formState.errorMessage}
+            <br />
+          </>
+        ) : null}
+        {formState.state === "submitting" ? (
+          <>
+            Uploading…
+            <br />
+          </>
+        ) : null}
+        <br />
         <button disabled={formState.state === "submitting"}>Upload</button>
       </form>
       <div>
