@@ -5,23 +5,23 @@ export const USER_ID = process.env.REACT_APP_USER_ID;
 export const Cameras = [
   {
     name: "CD41",
-    id: "7f698e62-ece0-4ad4-a08b-a0b6278cc718",
+    id: "717abf97-4d4d-4c8e-94b6-995d755e482d",
   },
   {
     name: "CD51",
-    id: "4172afe5-7f46-4efb-a59f-490d6de150e9",
+    id: "2c5543e6-cbd5-467d-b807-cf28bbacee90",
   },
   {
     name: "CD61",
-    id: "c81f2d7b-b554-4bc6-b6a8-032c93919575",
+    id: "ef65dd78-35de-4276-af92-6a75e89d8fe3",
   },
   {
     name: "CF81-E",
-    id: "8f736827-a0fe-414b-8704-1153cd846898",
+    id: "117c365c-17cd-498c-ae25-2ea7b4aa07b0",
   },
   {
     name: "CM41",
-    id: "3b1f1a08-011c-4d4b-b774-01074c727179",
+    id: "e42dbcb5-afe4-41ca-8131-60db36d8924a",
   },
 ];
 
