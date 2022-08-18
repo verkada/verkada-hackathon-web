@@ -12,12 +12,12 @@ export const Cameras = [
     id: "2c5543e6-cbd5-467d-b807-cf28bbacee90",
   },
   {
-    name: "CD61",
-    id: "ef65dd78-35de-4276-af92-6a75e89d8fe3",
+    name: "CM41-E",
+    id: "a99edd72-50bc-4119-9bbf-53ec650a9959",
   },
   {
-    name: "CF81-E",
-    id: "117c365c-17cd-498c-ae25-2ea7b4aa07b0",
+    name: "CD61",
+    id: "ef65dd78-35de-4276-af92-6a75e89d8fe3",
   },
   {
     name: "CM41",
@@ -27,15 +27,15 @@ export const Cameras = [
 
 export const Sensors = [
   {
-    name: "Sensor 1",
-    id: "b03bf88b-b48f-43da-aed1-251b39a2fcca",
-  },
-  {
-    name: "Sensor 2",
+    name: "Fog Machine Sensor",
     id: "2fd35c29-27dc-4612-be77-82aed7276106",
   },
   {
-    name: "Sensor 3",
+    name: "Heater Sensor",
+    id: "e4e9157f-d08c-49e2-a7b0-162d6a15285b",
+  },
+  {
+    name: "Humidifier Sensor",
     id: "720329fc-f5fa-427c-a28b-c10c406c3617",
   },
 ];
